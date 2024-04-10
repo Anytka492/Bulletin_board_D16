@@ -24,7 +24,7 @@ def comment_created(instance, created, **kwargs):
         msg.send()
 
 
-@receiver(pre_save,  sender=Comment)
+@receiver(post_save,  sender=Comment)
 def comment_accepted(instance, **kwargs):
     if Comment.objects.get(id=instance.id).acceptedBy != instance.acceptedBy:
         subject = 'ваше предложение принято'
